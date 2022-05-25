@@ -13,6 +13,7 @@ app.use(express.json({
 app.use(cors({origin: true}))
 
 app.get('/', (req,res)=>res.send('hello World! payserver'))
+app.get('/hi', (req,res)=>res.send('hi! Here is payserver.'))
 
 app.post('/create-checkout-session', createCheckoutSession);
 
