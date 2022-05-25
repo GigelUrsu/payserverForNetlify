@@ -44,7 +44,30 @@ async function createCheckoutSession(req,res) {
             customer_email,
             success_url: `${domainUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${domainUrl}/canceled`,
-            shipping_address_collection: {allowed_countries: ['RO','GB','US']}
+            shipping_address_collection: {allowed_countries: ['RO','GB','US']},
+            shipping_options: [
+                {
+                  shipping_rate_data: {
+                    type: 'fixed_amount',
+                    fixed_amount: {
+                      amount: 1500,
+                      currency: 'usd',
+                    },
+                    display_name: 'Next day air',
+                    // Delivers in exactly 1 business day
+                    delivery_estimate: {
+                      minimum: {
+                        unit: 'business_day',
+                        value: 1,
+                      },
+                      maximum: {
+                        unit: 'business_day',
+                        value: 1,
+                      },
+                    }
+                  }
+                },
+              ],
         });
         res.status(200).json({ sessionId: session.id });
     } catch (error) {
