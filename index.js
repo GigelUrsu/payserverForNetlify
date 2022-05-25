@@ -18,4 +18,4 @@ app.post('/create-checkout-session', createCheckoutSession);
 
 app.post('/webhook',webhook)
 
-app.listen(port, () => console.log("server listening on port ",port))
+app.listen(process.env.PORT, () => console.log("server listening on port ",process.env.PORT))
