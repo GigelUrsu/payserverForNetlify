@@ -44,7 +44,8 @@ const handleCreateTransaction = async (session,itemsData) => {
         // let ref = collection(firestore,"transactions",`${session.payment_intent}`);
         await setDoc(doc(firestore, "transactions", `${session.payment_intent}`), {
             ...session,
-            ...itemsData
+            ...itemsData,
+            statusOrder:"placed"
         });
         return(session)
 }
