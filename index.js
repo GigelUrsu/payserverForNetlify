@@ -17,7 +17,7 @@ app.get('/hi', (req,res)=>res.send('hi! Here is payserver.'))
 
 app.post('/create-checkout-session', createCheckoutSession);
 
-app.post('/webhook',webhook)
+app.post('/webhook',express.raw({type: 'application/json'}),webhook)
 
 app.listen(process.env.PORT, () => console.log("server listening on port ",process.env.PORT))
 // app.listen(port, () => console.log("server listening on port ",port))
