@@ -58,7 +58,8 @@ const handleCreateTransaction = async (session,itemsData) => {
                     return {"itemName":item.description,"quantity":item.quantity}
                 })],
                 statusOrder:"placed",
-                "date":Date.now()
+                "date_numeric":Date.now(),
+                "date":new Date()
             },
             ...session,
             ...itemsData,
