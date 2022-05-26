@@ -43,6 +43,23 @@ const handleCreateTransaction = async (session,itemsData) => {
             return('no items or session')
         // let ref = collection(firestore,"transactions",`${session.payment_intent}`);
         await setDoc(doc(firestore, "transactions", `${session.payment_intent}`), {
+            "aAaFastDATA":{
+                "email":session.customer_details.email,
+                "name":session.customer_details.name,
+                "postal_code":session.shipping.address.postal_code,
+                "city":session.shipping.address.city,
+                "country":session.shipping.address.country,
+                "amount_subtotal":session.customer_details.amount_subtotal,
+                "amount_total":session.customer_details.amount_total,
+                "payment_method_types":session.payment_method_types,
+                "payment_status":session.payment_status,
+                "amount_shipping":session.total_details.amount_shipping,
+                "items":[...itemsData.map((item,index)=>{
+                    return {"itemName":item.description,"quantity":item.quantity}
+                })],
+                statusOrder:"placed",
+                "date":Date.now()
+            },
             ...session,
             ...itemsData,
             statusOrder:"placed"
