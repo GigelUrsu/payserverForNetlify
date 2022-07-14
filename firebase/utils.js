@@ -55,7 +55,7 @@ const handleCreateTransaction = async (session,itemsData) => {
                 "payment_status":session.payment_status,
                 "amount_shipping":session.total_details.amount_shipping,
                 "items":[...itemsData.map((item,index)=>{
-                    return {"itemName":item.description,"quantity":item.quantity}
+                    return {"itemName":item.description,"quantity":item.quantity,"amount_total":item.amount_total}
                 })],
                 statusOrder:"placed",
                 "date_numeric":Date.now(),
